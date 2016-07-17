@@ -29,7 +29,6 @@ angular.module('chatapp.controllers', [])
     $ionicPlatform.ready(function() {
         Loader.hide();
         $scope.$on('showChatInterface', function ($event, authData) {
-            
             if (authData.google) {
                 authData = authData.google;
             }
@@ -46,6 +45,7 @@ angular.module('chatapp.controllers', [])
                 .then(function(ref) {
                     UserFactory.setPresenceId(ref.key());
                     UserFactory.setOLUsers($scope.onlineusers);
+                    alert('hello');
                     $state.go('tab.dash');
                 });
             });
@@ -63,7 +63,7 @@ angular.module('chatapp.controllers', [])
             
             $cordovaOauth.google(GOOGLEKEY, GOOGLEAUTHSCOPE).then(function (result) {
               
-                alert(GOOGLEKEY);
+                
                 FBFactory.auth().$authWithOAuthToken('google', result.access_token)
                 .then(function (authData) {
                     $scope.$broadcast('showChatInterface', authData);

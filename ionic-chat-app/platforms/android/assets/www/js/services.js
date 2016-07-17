@@ -43,7 +43,7 @@ angular.module('chatapp.services', [])
     return {
         auth: function() {
             var FBRef = new Firebase(FBURL);
-            alert('auth: ' + $firebaseAuth(FBRef));
+            //alert('auth: ' + $firebaseAuth(FBRef));
             return $firebaseAuth(FBRef);
         },
         olUsers: function() {

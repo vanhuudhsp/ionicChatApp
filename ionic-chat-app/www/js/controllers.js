@@ -64,9 +64,11 @@ angular.module('chatapp.controllers', [])
                     alert('authdata: ' + authData);
                     $scope.$broadcast('showChatInterface', authData);
                 }, function (error) {
+                    alert(error);
                     Loader.toggle(error);
                 });
             }, function (error) {
+                alert(error);
                 Loader.toggle(error);
             });
         }

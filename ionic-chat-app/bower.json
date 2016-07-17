@@ -2,6 +2,11 @@
   "name": "ionic-tabs",
   "private": true,
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.2.4"
+    "ionic": "driftyco/ionic-bower#1.2.4",
+    "ngCordova": "*",
+    "ng-cordova-oauth": "*",
+    "firebase": "2.2.4",
+    "angularfire": "1.2.0",
+    "lato": "*"
   }
 }

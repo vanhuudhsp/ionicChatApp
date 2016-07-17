@@ -12,6 +12,10 @@ var paths = {
   sass: ['./scss/**/*.scss']
 };
 
+gulp.task('watch', function () {
+    gulp.watch(paths.sass, ['sass']);
+});
+
 gulp.task('default', ['sass']);
 
 gulp.task('sass', function(done) {

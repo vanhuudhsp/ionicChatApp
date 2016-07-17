@@ -59,10 +59,10 @@ angular.module('chatapp.controllers', [])
         $scope.loginWithGoogle = function () {
             Loader.show('Authenticating..');
             $cordovaOauth.google(GOOGLEKEY, GOOGLEAUTHSCOPE).then(function (result) {
-                
+                alert(authData);
                 FBFactory.auth().$authWithOAuthToken('google', result.access_token)
                 .then(function (authData) {
-                    alert(authData);
+                 
                     $scope.$broadcast('showChatInterface', authData);
                 }, function (error) {
                     Loader.toggle(error);

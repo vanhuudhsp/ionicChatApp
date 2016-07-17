@@ -29,7 +29,6 @@ angular.module('chatapp.controllers', [])
     $ionicPlatform.ready(function() {
         Loader.hide();
         $scope.$on('showChatInterface', function ($event, authData) {
-            
             if (authData.google) {
                 authData = authData.google;
             }

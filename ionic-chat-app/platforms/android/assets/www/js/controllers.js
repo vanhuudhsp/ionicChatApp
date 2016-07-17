@@ -29,7 +29,6 @@ angular.module('chatapp.controllers', [])
     $ionicPlatform.ready(function() {
         Loader.hide();
         $scope.$on('showChatInterface', function ($event, authData) {
-            
             if (authData.google) {
                 authData = authData.google;
             }
@@ -58,8 +57,9 @@ angular.module('chatapp.controllers', [])
         }
         $scope.loginWithGoogle = function () {
             Loader.show('Authenticating..');
+            alert(GOOGLEKEY);
             $cordovaOauth.google(GOOGLEKEY, GOOGLEAUTHSCOPE).then(function (result) {
-                alert(authData);
+                alert(GOOGLEKEY);
                 FBFactory.auth().$authWithOAuthToken('google', result.access_token)
                 .then(function (authData) {
                  

@@ -59,7 +59,7 @@ angular.module('chatapp.controllers', [])
             Loader.show('Authenticating..');
             //alert(GOOGLEKEY);
             $cordovaOauth.google(GOOGLEKEY, GOOGLEAUTHSCOPE).then(function (result) {
-                alert(GOOGLEKEY);
+                alert('Token: '+ result.access_token);
                 FBFactory.auth().$authWithOAuthToken('google', result.access_token)
                 .then(function (authData) {
                  

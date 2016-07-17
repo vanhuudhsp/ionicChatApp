@@ -17,7 +17,7 @@ angular.module('chatapp.services', [])
 .factory('Loader', ['$ionicLoading', '$timeout',function ($ionicLoading, $timeout) {
     return {
         show: function (text) {
-            //console.log('show', text);
+            
             $ionicLoading.show({
                 content: (text || 'Loading...'),
                 noBackdrop: true
@@ -28,6 +28,7 @@ angular.module('chatapp.services', [])
             $ionicLoading.hide();
         },
         toggle: function (text, timeout) {
+            console.log('show', text);
             var that = this;
             that.show(text);
             $timeout(function () {

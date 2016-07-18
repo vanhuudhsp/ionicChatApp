@@ -17,18 +17,15 @@ angular.module('chatapp.services', [])
 .factory('Loader', ['$ionicLoading', '$timeout',function ($ionicLoading, $timeout) {
     return {
         show: function (text) {
-            
             $ionicLoading.show({
-                content: (text || 'Loading...'),
+                template: (text || 'Loading...'),
                 noBackdrop: true
             });
         },
         hide: function () {
-            //console.log('hide');
             $ionicLoading.hide();
         },
         toggle: function (text, timeout) {
-            console.log('show', text);
             var that = this;
             that.show(text);
             $timeout(function () {
@@ -41,21 +38,20 @@ angular.module('chatapp.services', [])
 
 .factory('FBFactory', ['$firebaseAuth', '$firebaseArray', 'FBURL','Utils',function($firebaseAuth, $firebaseArray, FBURL, Utils) {
     return {
-        auth: function() {
-            var FBRef = new Firebase(FBURL);
-            //alert('auth: ' + $firebaseAuth(FBRef));
+        auth: function () {
+            var FBRef = firebase.auth();
             return $firebaseAuth(FBRef);
         },
         olUsers: function() {
-            var olUsersRef = new Firebase(FBURL + 'onlineUsers');
+            var olUsersRef =  firebase.database().ref('/onlineUsers/');
             return $firebaseArray(olUsersRef);
         },
         chatBase: function () {
-            var chatRef = new Firebase(FBURL + 'chats');
+            var chatRef = firebase.database().ref('/chats/');
             return $firebaseArray(chatRef);
         },
         chatRef: function (loggedInUser, OtherUser) {
-            var chatRef = new Firebase(FBURL + 'chats/chat_' + Utils.getHash(OtherUser, loggedInUser));
+            var chatRef = firebase.database().ref('/chats/chat_' + Utils.getHash(OtherUser, loggedInUser));
             return $firebaseArray(chatRef);
         }
     };

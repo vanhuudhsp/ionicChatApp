@@ -3,7 +3,8 @@ angular.module('chatapp.controllers', [])
 .run(['FBFactory', '$rootScope', 'UserFactory', 'Utils', function(FBFactory, $rootScope, UserFactory, Utils) {
     $rootScope.chatHistory = [];
     var baseChatMonitor = FBFactory.chatBase();
-    var unwatch = baseChatMonitor.$watch( function (snapshot) {
+    
+    var unwatch = baseChatMonitor.$watch(function (snapshot) {
         var user = UserFactory.getUser();
         if (!user) return;
         if (snapshot.event == 'child_added' || snapshot.event == 'child_changed') {
@@ -26,7 +27,7 @@ angular.module('chatapp.controllers', [])
 ])
 
 .controller('MainCtrl', ['$scope', 'Loader', '$ionicPlatform','$cordovaOauth', 'FBFactory', 'GOOGLEKEY', 'GOOGLEAUTHSCOPE', 'UserFactory', 'currentAuth', '$state', function($scope, Loader, $ionicPlatform, $cordovaOauth, FBFactory, GOOGLEKEY, GOOGLEAUTHSCOPE, UserFactory, currentAuth, $state) {
-    $ionicPlatform.ready(function() {
+    $ionicPlatform.ready(function () {
         Loader.hide();
         $scope.$on('showChatInterface', function ($event, authData) {
             if (authData.google) {

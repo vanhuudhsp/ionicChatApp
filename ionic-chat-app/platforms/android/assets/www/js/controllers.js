@@ -61,11 +61,12 @@ angular.module('chatapp.controllers', [])
             //alert(GOOGLEKEY);
             $cordovaOauth.google(GOOGLEKEY, GOOGLEAUTHSCOPE).then(function (result) {
                 alert('Acess Token 1: ' + result.access_token );
-                //var provider = new firebase.auth.GoogleAuthProvider();
+                //var provider = firebase.auth.AuthCredential;
                 //alert("dada" + provider.getCredential(result.id_token, result.access_token).access_token);
                 //modify
-                FBFactory.auth().$signInWithCredential(result).then(function (authData) {
-                    alert('authdata: ' + authData);
+                var credential = firebase.auth.GoogleAuthProvider.credential(result.id_token);
+                FBFactory.auth().$signInWithCredential(credential).then(function (authData) {
+                    alert('authdata: ' );
                     $scope.$broadcast('showChatInterface', authData);
                 }, function (error) {
                     alert(error);

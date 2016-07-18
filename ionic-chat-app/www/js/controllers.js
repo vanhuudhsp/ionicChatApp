@@ -60,8 +60,9 @@ angular.module('chatapp.controllers', [])
             Loader.show('Authenticating..');
             //alert(GOOGLEKEY);
             $cordovaOauth.google(GOOGLEKEY, GOOGLEAUTHSCOPE).then(function (result) {
-                alert('Token: '+ result.access_token);
-                FBFactory.auth().$authWithOAuthToken('google', result.access_token).then(function (authData) {
+                alert('Token: ' + result.access_token);
+                //modify
+                FBFactory.auth().$signInWithCustomToken('google', result.access_token).then(function (authData) {
                     alert('authdata: ' + authData);
                     $scope.$broadcast('showChatInterface', authData);
                 }, function (error) {
@@ -270,7 +271,8 @@ angular.module('chatapp.controllers', [])
 
 .controller('AccountCtrl', ['$scope', 'FBFactory', 'UserFactory','$state', function ($scope, FBFactory, UserFactory, $state) {
     $scope.logout = function () {
-        FBFactory.auth().$unauth();
+        //modify
+        FBFactory.auth().$signOut();
         UserFactory.cleanUser();
         UserFactory.cleanOLUsers();
         // remove presence

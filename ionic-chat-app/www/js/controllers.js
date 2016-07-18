@@ -64,7 +64,7 @@ angular.module('chatapp.controllers', [])
                 //var provider = new firebase.auth.GoogleAuthProvider();
                 //alert("dada" + provider.getCredential(result.id_token, result.access_token).access_token);
                 //modify
-                FBFactory.auth().$signInWithCredential('google', result.access_token).then(function (authData) {
+                FBFactory.auth().$signInWithCredential(result).then(function (authData) {
                     alert('authdata: ' + authData);
                     $scope.$broadcast('showChatInterface', authData);
                 }, function (error) {

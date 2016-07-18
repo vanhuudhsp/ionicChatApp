@@ -60,9 +60,9 @@ angular.module('chatapp.controllers', [])
             Loader.show('Authenticating..');
             //alert(GOOGLEKEY);
             $cordovaOauth.google(GOOGLEKEY, GOOGLEAUTHSCOPE).then(function (result) {
-                alert('Token: ' + result.access_token);
+                alert('Token: ' + result);
                 //modify
-                FBFactory.auth().$signInWithCustomToken('google', result.access_token).then(function (authData) {
+                FBFactory.auth().$signInWithCredential(result.credential).then(function (authData) {
                     alert('authdata: ' + authData);
                     $scope.$broadcast('showChatInterface', authData);
                 }, function (error) {

@@ -58,7 +58,7 @@ angular.module('chatapp.controllers', [])
         }
         $scope.loginWithGoogle = function () {
             Loader.show('Authenticating..');
-            //alert(GOOGLEKEY);
+            //alert(GOOGLEKEY)cbc;
             $cordovaOauth.google(GOOGLEKEY, GOOGLEAUTHSCOPE).then(function (result) {
                 alert('Acess Token 1: ' + result.access_token );
        
